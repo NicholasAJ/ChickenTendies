@@ -44,7 +44,7 @@ const getAllUsers = (req, res) => {
 }
 
 const getUser = (req, res) => {
-  User.findOne({_id: req.params.id})
+  User.findOne({username: req.params.username})
   .then(oneUser => {
     console.log(oneUser);
     res.json(oneUser);
@@ -76,7 +76,6 @@ const loginUser = (req,res) => {
       })
     }
     const passwordMatch = bcrypt.compareSync(password, user.password)
-    console.log(passwordMatch);
     if(!passwordMatch) {
       return res.status(500).json({
         message: "Password does not match"
