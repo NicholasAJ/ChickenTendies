@@ -36,9 +36,21 @@ const getUser = (req, res) => {
   });
 };
 
+const deleteUser = (req, res) => {
+  User.deleteUser({_id: req.params.id})
+  .then(deleteConfirmation => {
+    console.log(deleteConfirmation);
+    res.json(deleteConfirmation);
+  })
+  .catch(err => {
+    console.log(err);
+    res.json(err);
+  });
+};
 
 module.exports = {
   createUser,
   getAllUsers,
   getUser,
+  deleteUser,
 }
