@@ -3,6 +3,7 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: 'string',
     required: true,
+    uniqure: true,
     minlength: 6,
     message: 'username must be at least 6 characters long'
   },
@@ -16,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
     minlength: 2,
     message: 'name must be at least 2 characters long'
-  }
+  },
 });
 
-module.exports == mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
