@@ -13,7 +13,32 @@ const createUser = (req, res) => {
     });
 };
 
+const getAllUsers = (req, res) => {
+  User.find({})
+  .then(allUsers => {
+    console.log(allUsers);
+    res.json(allUsers);
+    })
+    .catch (err => {
+      console.log(err);
+      res.json,(400).json(err);
+    })
+}
+
+const getUser = (req, res) => {
+  User.findOne({_id: req.params.id})
+  .then(oneUser => {
+    console.log(oneUser);
+    res.json(oneUser);
+  })
+  .catch(err => {
+    res.json(400).json(err);
+  });
+};
+
 
 module.exports = {
-  createUser
+  createUser,
+  getAllUsers,
+  getUser,
 }
