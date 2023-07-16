@@ -25,12 +25,10 @@ const ReviewSchema = new mongoose.Schema({
   },
   comments: {
     type: 'string',
-    required: true
   },
   createdBy: {
     type:'String',
-    required: true
   },
+});
 
-
-})
+module.exports = mongoose.model('Review',ReviewSchema);

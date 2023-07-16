@@ -25,7 +25,7 @@ const getAllReviews = (req, res) => {
 };
 
 const getOneReview = (req, res) => {
-  Review.findOne({_id: req.params.id})
+  Review.findOne({_id:req.params.id})
   .then(oneReview => {
     console.log(oneReview);
     res.json(oneReview);
@@ -37,7 +37,8 @@ const getOneReview = (req, res) => {
 };
 
 const updateReview = (req, res) => {
-  Review.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
+  console.log(JSON.stringify(req.body));
+  Review.findOneAndUpdate({_id: req.body._id}, req.body, {new:true})
   .then(updatedReview =>{
     console.log(updatedReview);
     res.json(updatedReview);
@@ -49,7 +50,7 @@ const updateReview = (req, res) => {
 };
 
 const deleteReview = (req, res) => {
-  Review.deleteOne({_id:req.params.id})
+  Review.deleteOne({_id:req.body._id})
   .then(deletConfirmation => {
     console.log(deletConfirmation);
     res.json(deletConfirmation);
