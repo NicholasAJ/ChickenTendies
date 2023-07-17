@@ -2,11 +2,18 @@ import './App.css';
 import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom';
 import React, {useState} from 'react';
 
-// const [loggedIn, setLoggedIn] = useState(false);
-// const [user, setUser] = useState({});
-
-
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  <CreateReview currentUser=user />
+
+  {
+    restaurant: 'Wen',
+    crispiness: 4,
+    createdBy: user.username,
+  }
+
   return (
     <div className="App">
         <div className='page'>
