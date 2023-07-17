@@ -1,55 +1,39 @@
 import '../App.css';
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import React, {useState} from "react";
 import axios from "axios";
+import {useNavigate, Link} from "react-router-dom";
 
-const EditReview = (props) => {
-  const {} = useParams();
-  const navigate = useNavigate();
+//   <CreateReview currentUser=user />
+
+//   {
+//     restaurant: 'Wen',
+//     crispiness: 4,
+//     createdBy: user.username,
+//   }
+
+const CreateReview = () => {
   const [restaurantName, setRestaurantName] = useState("");
   const [price, setPrice] = useState("");
   const [flavor, setFlavor] = useState("");
   const [crispiness, setCrispiness] = useState("");
   const [size, setSize] = useState("");
   const [comment, setComment] = useState("");
-  const [errors,setErrors] = useState({});
-
-  useEffect(() => {
-    axios.get(`http://localhost:8000/review/$`)
-    .then((res) => {
-      setRestaurantName(res.data.restaurantName);
-      setPrice(res.data.price);
-      setFlavor(res.data.flavor);
-      setCrispiness(res.data.crispiness);
-      setSize(res.data.size);
-      setComment(res.data.comment);
-    })
-    .catch((err) => {
-      // setReviewNotFound('Review not found');
-      console.log(err)
-    })
-  }, []); // [username]
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:8000/review`, {
-        restaurantName,
-        price,
-        size,
-        crispiness,
-        flavor,
-        comment
+      .post("http://localhost:8000/review",
+      {restaurantName, price, flavor, crispiness, size, comment})
+      .then ((res) => {
+        console.log(res.data);
+        navigate('/');
       })
-      .then((res) => {
-        console.log(res.data)
-        navigate("/");
-      })
-      .catch ((err) => {
+      .catch((err) => {
         console.log(err);
-        console.log("update handler clientside");
-        setErrors(err.response.data.errors);
-        console.log(errors);
+        console.log('Catch Create Clientside REVIEW')
+        setErrors(err.response.data.errors)
       });
   };
 
@@ -59,9 +43,9 @@ const EditReview = (props) => {
         <p>Create your Tender Review</p>
       </div>
       <div className='reviewContainer'>
-      <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler}>
           <div className='inputContainer'>
-            <lable>Restaurant Name</lable>
+            <label>Restaurant Name</label>
             {errors.restaurantName ? <p>{errors.restaurantName.message}</p> : null}
             <input
               type='text'
@@ -71,7 +55,7 @@ const EditReview = (props) => {
             />
           </div>
           <div className='radiobutton'>
-            <lable>Crispiness</lable>
+            <label>Crispiness</label>
             {errors.crispiness ? <p>{errors.crispiness.message}</p>: null}
             <div className='radioButton'>
               <input type='radio' value='1' name='crispiness'/> 1
@@ -104,9 +88,10 @@ const EditReview = (props) => {
             </div>
           </div>
           <div className='reviewContainer' onChange={this.onChangeValue}>
-            <lable>Price</lable>
+            <label>Price</label>
             {errors.price ? <p>{errors.price.message}</p>: null}
-            <input type='text'
+            <input 
+              type='text'
               name='price'
               onChange={(e) => setPrice(e.target.value)}
               value={(price)}
@@ -127,4 +112,4 @@ const EditReview = (props) => {
   );
 };
 
-export default EditReview;
+export default CreateReview;
