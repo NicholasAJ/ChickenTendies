@@ -28,6 +28,7 @@ const ReviewSchema = new mongoose.Schema({
   },
   createdBy: {
     type:'String',
+    required: true
   },
 });
 

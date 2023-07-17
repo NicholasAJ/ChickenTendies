@@ -20,21 +20,42 @@ const ViewReview = (props) => {
       });
   }, [username],[id]);
 
+  const HandleDelete = () => {
+    console.log(`This review is being deleted {}`)
+    axios
+      .delete(`http://localhost:8000/review`)
+      .then ((res) => {
+        console.log("successful deletion");
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("error deleting store", err);
+      });
+  };
+
   return (
     <div>
       <div>
-        <h2>{oneReview.restaurantName}</h2>
-        <p>{oneReview.flavor}</p>
-        <p>{oneReview.crispiness}</p>
-        <p>{oneReview.size}</p>
-        <p>{oneReview.price}</p>
-        <p>{oneReview.comment}</p>
+        <h1>Your Tender</h1>
       </div>
-      <div>
-        <Link to={`/review/${username}/${id}`}>
-          <button>Edit your Tender</button>
-        </Link>
-      </div>
+          <div key={oneReview.username}>
+            <h2>{oneReview.restaurantName}</h2>
+            <p>{oneReview.flavor}</p>
+            <p>{oneReview.crispiness}</p>
+            <p>{oneReview.size}</p>
+            <p>{oneReview.price}</p>
+            <p>{oneReview.comment}</p>
+          </div>
+          <div>
+            <Link to={`/review/${username}/${id}`}>
+              <button>Edit your Tender</button>
+            </Link>
+          </div>
+          <div>
+            <button onClick={() => HandleDelete()}>
+              Delete
+            </button>
+          </div>
     </div>
   )
 };

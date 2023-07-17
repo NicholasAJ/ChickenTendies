@@ -15,7 +15,7 @@ const EditReview = (props) => {
   const [errors,setErrors] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/review/${username}`)
+    axios.get(`http://localhost:8000/review/$`)
     .then((res) => {
       setRestaurantName(res.data.restaurantName);
       setPrice(res.data.price);
@@ -25,10 +25,10 @@ const EditReview = (props) => {
       setComment(res.data.comment);
     })
     .catch((err) => {
-      setReviewNotFound('Review not found');
+      // setReviewNotFound('Review not found');
       console.log(err)
     })
-  }, [username]);
+  }, []); // [username]
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -59,7 +59,7 @@ const EditReview = (props) => {
         <p>Create your Tender Review</p>
       </div>
       <div className='reviewContainer'>
-        <form>
+      <form onSubmit={submitHandler}>
           <div className='inputContainer'>
             <lable>Restaurant Name</lable>
             {errors.restaurantName ? <p>{errors.restaurantName.message}</p> : null}

@@ -13,7 +13,7 @@ const createReview = (req, res) => {
 };
 
 const getAllReviews = (req, res) => {
-  Review.find({})
+  Review.find({createdBy: req.params.username})
   .then(allReviews => {
     console.log(allReviews);
     res.json(allReviews);
@@ -23,6 +23,7 @@ const getAllReviews = (req, res) => {
     res.status(400).json(err);
   });
 };
+
 
 const getOneReview = (req, res) => {
   Review.findOne({_id:req.params.id})

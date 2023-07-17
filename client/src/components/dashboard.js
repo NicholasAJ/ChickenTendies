@@ -6,7 +6,7 @@ const DisplayAll = () => {
   const [allReviews, setAllReviews] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/review/${username}`)
+      .get(`http://localhost:8000/review/$`)
       .then((res) => {
         console.log(res.data);
         setAllReviews(res.data);

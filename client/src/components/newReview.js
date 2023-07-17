@@ -3,6 +3,14 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useNavigate, Link} from "react-router-dom";
 
+//   <CreateReview currentUser=user />
+
+//   {
+//     restaurant: 'Wen',
+//     crispiness: 4,
+//     createdBy: user.username,
+//   }
+
 const CreateReview = () => {
   const [restaurantName, setRestaurantName] = useState("");
   const [price, setPrice] = useState("");
@@ -24,7 +32,7 @@ const CreateReview = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log('Catch Create Clientside')
+        console.log('Catch Create Clientside REVIEW')
         setErrors(err.response.data.errors)
       });
   };
@@ -37,7 +45,7 @@ const CreateReview = () => {
       <div className='reviewContainer'>
         <form onSubmit={submitHandler}>
           <div className='inputContainer'>
-            <lable>Restaurant Name</lable>
+            <label>Restaurant Name</label>
             {errors.restaurantName ? <p>{errors.restaurantName.message}</p> : null}
             <input
               type='text'
@@ -47,7 +55,7 @@ const CreateReview = () => {
             />
           </div>
           <div className='radiobutton'>
-            <lable>Crispiness</lable>
+            <label>Crispiness</label>
             {errors.crispiness ? <p>{errors.crispiness.message}</p>: null}
             <div className='radioButton'>
               <input type='radio' value='1' name='crispiness'/> 1
@@ -80,7 +88,7 @@ const CreateReview = () => {
             </div>
           </div>
           <div className='reviewContainer' onChange={this.onChangeValue}>
-            <lable>Price</lable>
+            <label>Price</label>
             {errors.price ? <p>{errors.price.message}</p>: null}
             <input 
               type='text'
@@ -88,7 +96,6 @@ const CreateReview = () => {
               onChange={(e) => setPrice(e.target.value)}
               value={(price)}
             />
-
           </div>
           <div className='commentContainer'>
             <label>comments</label>
