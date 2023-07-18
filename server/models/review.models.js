@@ -4,31 +4,36 @@ const ReviewSchema = new mongoose.Schema({
   restaurantName: {
     type: 'string',
     required: true,
-    minlength: 6,
-    message: 'Restaurant name must be at least 6 characters long'
+    minlength: 3,
+    message: 'Restaurant name must be at least 3 characters long'
   },
   price: {
     type: 'number',
     required: true,
+    message: "Price is required"
   },
   crispiness: {
     type: 'number',
-    required: true
+    required: true,
+    message: "please select a number 1-5"
   },
   flavor: {
     type: 'number',
-    required: true
+    required: true,
+    message: "please select a number 1-5"
   },
   size: {
     type: 'number',
-    required: true
+    required: true,
+    message: "please select a number 1-5"
   },
   comments: {
     type: 'string',
+    required:true,
+    message: "Please leave a comment"
   },
   createdBy: {
     type:'String',
-    required: true
   },
 });
 

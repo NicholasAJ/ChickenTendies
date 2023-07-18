@@ -1,37 +1,38 @@
 import './App.css';
 import {BrowserRouter, Routes, Route, NavLink} from 'react-router-dom';
-import React, {useState} from 'react';
+import React from 'react';
 
-import dashboard from "./components/dashboard"
-import editReview from "./components/editReview"
-import LoginUser from './components/loginPage'
-import newReview from "./components/newReview"
+import DisplayAll from "./components/dashboard"
+import EditReview from "./components/editReview"
+import LoginUser from './components/loginPage';
 import CreateUser from "./components/signUpPage"
-import singleReview from "./components/singleReview"
+import CreateReview from './components/newReview';
+import ViewReview from "./components/singleReview"
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const user = (User) => {
-    setUser(User);
-  }
 
   return (
     <div className="App">
         <div className='page'>
       <BrowserRouter>
         <header className="navbar">
-          Chicken Tinder
-          <p>
-            <NavLink to="/">Home</NavLink>
+          <p id='title'>Chicken Tinder</p>
+          <p id='homeLink'>
+            <NavLink to="/chickentinder/dash">Home</NavLink>
           </p>
         </header>
+              {/* <div>
+                {
+                  loggedIn === true ? <LoginUser onFormSwitch={toggleForm}/> : <CreateUser/>
+                }
+              </div> */}
             <Routes> 
-              <Route path="/chickentinder/dash" element={dashboard}/>
-              <Route path="/chickentinder/tender/edit" element={editReview}/>
-              <Route path="/" element={LoginUser}/> 
-              <Route path="/chickentinder/new" element={newReview}/>
-              <Route path="/chickentinder/signup" element={CreateUser}/> 
-              <Route path="/chickentinder/tender" element={singleReview}/>
+              <Route path="/chickentinder/dash" element={<DisplayAll/>}/>
+              <Route path="/chickentinder/edit/:id" element={<EditReview/>}/>
+              <Route path="/chickentinder/login" element={<LoginUser/>}/>
+              <Route path="/chickentinder/new" element={<CreateReview/>}/>
+              <Route path="/chickentinder/create" element={<CreateUser/>}/> 
+              <Route path="/chickentinder/tender/:id" element={<ViewReview/>}/>
             </Routes>
           </BrowserRouter>
         </div>

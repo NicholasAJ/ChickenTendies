@@ -50,7 +50,7 @@ const updateReview = (req, res) => {
 };
 
 const deleteReview = (req, res) => {
-  Review.deleteOne({_id:req.body._id})
+  Review.deleteOne({_id:req.params.id})
   .then(deletConfirmation => {
     console.log(deletConfirmation);
     res.json(deletConfirmation);
