@@ -1,0 +1,60 @@
+.reviewContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.singleReview {
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px darkgrey;
+  width: 300px;
+  padding: 10px;
+  background-color: #D8BFAA;
+  margin-bottom: 10px;
+}
+
+.reviewTitle{
+  font-family: monospace, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: oblique;
+  text-shadow: 2px 2px 8px #2268b2;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#restaurantName {
+  font-weight: 700;
+  font-size: x-large;
+  text-decoration: underline;
+}
+
+.reviewBody {
+  font-weight: 500;
+}
+
+.button {
+  margin-top: 10 px;
+  background-color: #EBF5EE;
+  border-radius: 45px;
+  box-shadow: 3px 3px rgb(186, 179, 179);
+}
+
+.editReview{
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px darkgrey;
+  width: 500px;
+  padding: 10px;
+  background-color: #D8BFAA;
+  margin-bottom: 10px;
+}
+
+#price {
+  width: fit-content;
+}

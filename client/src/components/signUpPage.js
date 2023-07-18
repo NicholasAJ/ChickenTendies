@@ -1,9 +1,9 @@
 import '../App.css';
 import React, {useState} from "react";
 import axios from "axios";
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-const CreateUser = () => {
+const CreateUser = (props) => {
   const[username, setUsername] = useState("");
   const[password, setPassword] = useState("");
   const[name, setName] = useState("");
@@ -13,11 +13,11 @@ const CreateUser = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/user",
+      .put("http://localhost:8000/user",
       {username, password, name})
       .then ((res) => {
         console.log(res.data);
-        navigate('/');
+        navigate('/chickentinder/dash');
       })
       .catch ((err) => {
         console.log(err);
@@ -57,8 +57,10 @@ const CreateUser = () => {
             onChange={(e) => setName(e.target.value)}
             value={(name)}
           />
+          <button type='submit'>Sign Up</button>
         </form>
       </div>
+      {/* <button onClick={() => props.onFormSwitch('LoginPage')}>Already have an account? Login Here</button> */}
     </div>
   );
 
